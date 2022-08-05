@@ -4,21 +4,23 @@ import Tab from "@mui/material/Tab";
 import { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import Card from "./Card";
+import { financeBooks, historyBooks, programmingBooks } from "./books";
 
 const useStyles = makeStyles({
   root: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginTop: "2em",
+    overflow: "auto",
   },
-  card: {
+  wrapper: {
     display: "flex",
-    flexDirection: "column",
-    padding: "1em",
-    border: "1px solid",
-    minWidth: "15em",
-    margin: "1em",
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: "1em",
+    width: "100%",
+    justifyContent: "center",
+    flexFlow: "wrap",
   },
 });
 
@@ -51,62 +53,59 @@ function BookComponent() {
         Please select any genre from below to get recommendation of book
       </Typography>
 
-      <Tabs style={{ marginTop: "2em" }} value={value} onChange={handleChange}>
+      <Tabs
+        style={{ marginTop: "0.5em" }}
+        value={value}
+        onChange={handleChange}
+      >
         <Tab label="Finance" />
         <Tab label="Programming" />
         <Tab label="History" />
       </Tabs>
 
       <TabPanel value={value} index={0}>
-        <div style={{ marginTop: "1em" }}>
-          <Card
-            book={"1. Rich Dad Poor Dad"}
-            author={"By Robert Kiyosaki"}
-            style={classes.card}
-          />
-          <Card
-            book={"2. The Barefoot Investor"}
-            author={"by Scott Pape"}
-            style={classes.card}
-          />
-          <Card
-            book={"3. The Intelligent Investor"}
-            author={"by Benjamin Graham"}
-            style={classes.card}
-          />
+        <div className={classes.wrapper}>
+          {financeBooks.map((book) => {
+            return (
+              <Card
+                key={book.id}
+                author={book.author}
+                book={book.title}
+                rating={book.rating}
+                description={book.description}
+              />
+            );
+          })}
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <div style={{ marginTop: "1em" }}>
-          <Card
-            book={"1. Introduction to Algorithms"}
-            author={"By Thomas H. Cormen"}
-            style={classes.card}
-          />
-          <Card
-            book={"2. The Pragmatic Programmer"}
-            author={"by Andrew Hunt & David Thomas"}
-            style={classes.card}
-          />
+        <div className={classes.wrapper}>
+          {programmingBooks.map((book) => {
+            return (
+              <Card
+                key={book.id}
+                author={book.author}
+                book={book.title}
+                rating={book.rating}
+                description={book.description}
+              />
+            );
+          })}
         </div>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <div style={{ marginTop: "1em" }}>
-          <Card
-            book={"1. What Is History"}
-            author={"By Edward Hallett Carr"}
-            style={classes.card}
-          />
-          <Card
-            book={"2. The Guns of August"}
-            author={"by Barbara Tuchman"}
-            style={classes.card}
-          />
-          <Card
-            book={"3. Parallel Lives"}
-            author={"by Plutarch"}
-            style={classes.card}
-          />
+        <div className={classes.wrapper}>
+          {historyBooks.map((book) => {
+            return (
+              <Card
+                key={book.id}
+                author={book.author}
+                book={book.title}
+                rating={book.rating}
+                description={book.description}
+              />
+            );
+          })}
         </div>
       </TabPanel>
     </div>
