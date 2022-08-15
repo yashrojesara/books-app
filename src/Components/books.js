@@ -45,7 +45,7 @@ export const programmingBooks = [
   },
   {
     id: 3,
-    title: "JavaScript: The Definitive Guide",
+    title: "JavaScript-The Definitive Guide",
     author: "David Flanagan",
     description:
       "For web developers and other programmers interested in using JavaScript, this book provides the most comprehensive JavaScript material on the market",
